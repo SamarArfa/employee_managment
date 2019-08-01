@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Storage;
+use Image;
 use App\info;
 use App\specialization;
 use Illuminate\Http\Request;
@@ -79,6 +80,7 @@ class employee_info extends Controller
         $info->socialStatus =$request->get('socialStatus');
         $info->gender =$request->gender;
         if($request->hasFile('featured_image')) {
+            //add the new photo
             $image = $request->file('featured_image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $fileName);
@@ -151,12 +153,16 @@ class employee_info extends Controller
         $info->socialStatus =$request->get('socialStatus');
         $info->gender =$request->gender;
         if($request->hasFile('featured_image')) {
+            //add the new photo
             $image = $request->file('featured_image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $fileName);
-
             Image::make($image)->resize(100, 200)->save($location);
-            $info->image =$fileName;
+            $oldFileName = $info->images;
+            //updatw the database
+            $info->images = $fileName;
+            //delete the old photo
+            Storage::delete($oldFileName);
         }
         $info->save();
         return response('successfull',200);

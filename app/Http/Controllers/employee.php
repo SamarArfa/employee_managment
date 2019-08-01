@@ -70,14 +70,14 @@ $kinship=Kinship::all();
         $kinship->work =$request->work;
 
 
-        if($request->hasFile('image')) {
-            $image = $request->file('image');
+        if($request->hasFile('featured_image')) {
+            //add the new photo
+            $image = $request->file('featured_image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('image/' . $fileName);
+            $location = public_path('images/' . $fileName);
 
             Image::make($image)->resize(100, 200)->save($location);
-            $kinship->image = $fileName;
-
+            $kinship->image =$fileName;
         }
 
             $kinship->save();
@@ -142,15 +142,16 @@ $kinship=Kinship::all();
         $kinship->work =$request->work;
 
 
-        if($request->hasFile('image')) {
-            $image = $request->file('image');
+        if($request->hasFile('featured_image')) {
+            //add the new photo
+            $image = $request->file('featured_image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('image/' . $fileName);
+            $location = public_path('images/' . $fileName);
 
             Image::make($image)->resize(100, 200)->save($location);
-            $kinship->image = $fileName;
-
+            $kinship->image =$fileName;
         }
+
 
         $kinship->save();
         return response('successfull',200);

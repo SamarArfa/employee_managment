@@ -38,7 +38,7 @@ myApp.config(function($routeProvider) {
 
 });
 
-myApp.controller("CRUDController1", function ($scope ,$http,$filter ,$window){
+myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
     $scope.kinship = []; $scope.relative = [];
     $scope.id=0;
@@ -177,8 +177,10 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ,$window){
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
+            alert('Submit success');
+
             // alert('Submit Success');
-            alert(response.data.id);
+            // alert(response.data.id);
             $scope.id = response.data.id;
             $scope.loadinfo();
         }, function errorCallback(response) {
@@ -317,6 +319,7 @@ $scope.qualification = [];
         }, function errorCallback(response) {
             console.log(response);
             alert('Submit Error');
+            $scope.loadcourse();
 
         });
     }
@@ -444,7 +447,6 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            $window.location.href="/";
 
             // $scope.displayData();
             // $scope.loadkinship();
@@ -511,7 +513,6 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            $window.location.href="/";
             // $scope.displayData();
             // $scope.loadkinship();
 
@@ -568,7 +569,6 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            $window.location.href="/";
 
             // $scope.displayData();
             // $scope.loadkinship();
@@ -624,7 +624,6 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            $window.location.href="/";
 
             // $scope.displayData();
             // $scope.loadkinship();
@@ -684,7 +683,6 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            $window.location.href="/";
 
             // $scope.displayData();
             // $scope.loadkinship();

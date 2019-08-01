@@ -130,7 +130,7 @@
                                             <td>{{infos.dateBirth}}</td>
                                             <td>{{infos.address}}</td>
                                             <td>
-                                                <img src ="images/{{infos.image}}" height="100" width="100"/>
+                                                <img ng-src ="images/{{infos.image}}" height="100" width="100"/>
                                             </td>
 
                                             <td>
@@ -216,7 +216,9 @@
                                     <td ng-if="kinships.work ==0" >false</td>
                                     <td ng-if="kinships.work ==1" >true</td>
 
-                                    <td>{{kinships.image}}</td>
+                                    <td>
+                                        <img ng-src ="images/{{kinships.image}}" height="100" width="100"/>
+                                    </td>
 
 
                                     <td>

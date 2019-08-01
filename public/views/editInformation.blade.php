@@ -144,6 +144,7 @@
                                 </div><br>
                             </div>
 
+                            <a href="#!display" class="btn btn-danger">Back</a>
 
                             <button type="button" class="btn btn-primary" ng-click="updateInfo()">update</button>
 
