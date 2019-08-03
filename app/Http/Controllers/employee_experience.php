@@ -46,7 +46,7 @@ $experience=experiences::all();
             'Job_title'=>'required',
             'Start_Date'=>'required',
             'Expiry_date'=>'required',
-            'Salary'=>'required',
+            'Salary'=>['required','integer', 'min:0'],
             'coin'=>'required',
             'details'=>'required'
 

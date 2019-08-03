@@ -59,7 +59,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
     //******************// Add new kinship
     $scope.addkinship = function () {
-        alert($scope.id);
+        // alert($scope.id);
         $http({
             method: 'POST',
             url: 'http://localhost/employee/public/employee',
@@ -83,7 +83,10 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
             $scope.loadkinship();
         }, function errorCallback(response) {
             console.log(response);
-            alert('Submit Error');
+            $scope.recordErrorsKinship(response);
+
+
+            // alert('Submit Error');
             $scope.loadkinship();
 
         });
@@ -183,9 +186,11 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
             // alert(response.data.id);
             $scope.id = response.data.id;
             $scope.loadinfo();
-        }, function errorCallback(response) {
-            console.log(response);
-            alert('Submit Error');
+        }, function error(error) {
+            // console.log(response);
+            $scope.recordErrors(error);
+
+
             $scope.loadinfo();
 
         });
@@ -252,7 +257,9 @@ $scope.qualification = [];
             $scope.loaddegree();
         }, function errorCallback(response) {
             console.log(response);
-            alert('Submit Error');
+            $scope.recordErrorsDegree(response);
+
+            // alert('Submit Error');
             $scope.loaddegree();
 
         });
@@ -318,7 +325,9 @@ $scope.qualification = [];
 
         }, function errorCallback(response) {
             console.log(response);
-            alert('Submit Error');
+            $scope.recordErrorsCourse(response);
+
+            // alert('Submit Error');
             $scope.loadcourse();
 
         });
@@ -383,16 +392,125 @@ $scope.qualification = [];
             $scope.loadexperience();
         }, function errorCallback(response) {
             console.log(response);
-            alert('Submit Error');
+            $scope.recordErrorsExperience(response);
+
+
+            // alert('Submit Error');
             $scope.loadexperience();
 
         });
     }
 
+    $scope.recordErrors = function (error) {
+        $scope.errors = [];
+        if (error.data.errors.firstName) {
+            $scope.errors.push(error.data.errors.firstName[0]);
+        } else if (error.data.errors.secondName) {
+            $scope.errors.push(error.data.errors.secondName[0]);
+        } else if (error.data.errors.thirdName) {
+            $scope.errors.push(error.data.errors.thirdName[0]);
+        } else if (error.data.errors.fourthName) {
+            $scope.errors.push(error.data.errors.fourthName[0]);
+        } else if (error.data.errors.email) {
+            $scope.errors.push(error.data.errors.email[0]);
+        } else if (error.data.errors.idNum) {
+            $scope.errors.push(error.data.errors.idNum[0]);
+        } else if (error.data.errors.functionalNum) {
+            $scope.errors.push(error.data.errors.functionalNum[0]);
+        } else if (error.data.errors.specialization) {
+            $scope.errors.push(error.data.errors.specialization[0]);
+        } else if (error.data.errors.mobile) {
+            $scope.errors.push(error.data.errors.mobile[0]);
+        } else if (error.data.errors.phone) {
+            $scope.errors.push(error.data.errors.phone[0]);
+        } else if (error.data.errors.dateOfHiring) {
+            $scope.errors.push(error.data.errors.dateOfHiring[0]);
+        } else if (error.data.errors.dateBirth) {
+            $scope.errors.push(error.data.errors.dateBirth[0]);
+        }else if (error.data.errors.address) {
+            $scope.errors.push(error.data.errors.address[0]);
+        }else if (error.data.errors.socialStatus) {
+            $scope.errors.push(error.data.errors.socialStatus[0]);
+        }else if (error.data.errors.gender) {
+            $scope.errors.push(error.data.errors.gender[0]);
+        }else if (error.data.errors.image) {
+            $scope.errors.push(error.data.errors.image[0]);
+        }
+    }
 
 
+    $scope.recordErrorsKinship = function (error) {
+        $scope.errors = [];
+        if (error.data.errors.FirstName) {
+            $scope.errors.push(error.data.errors.FirstName[0]);
+        } else if (error.data.errors.SecondName) {
+            $scope.errors.push(error.data.errors.SecondName[0]);
+        }else if (error.data.errors.ThirdName) {
+            $scope.errors.push(error.data.errors.ThirdName[0]);
+        }else if (error.data.errors.FourthName) {
+            $scope.errors.push(error.data.errors.FourthName[0]);
+        }else if (error.data.errors.relative_relation) {
+            $scope.errors.push(error.data.errors.relative_relation[0]);
+        }else if (error.data.errors.Date_of_Birth) {
+            $scope.errors.push(error.data.errors.Date_of_Birth[0]);
+        }else if (error.data.errors.Social_status) {
+            $scope.errors.push(error.data.errors.Social_status[0]);
+        }else if (error.data.errors.Study) {
+            $scope.errors.push(error.data.errors.Study[0]);
+        }else if (error.data.errors.work) {
+            $scope.errors.push(error.data.errors.work[0]);
+        }else if (error.data.errors.image) {
+            $scope.errors.push(error.data.errors.image[0]);
+        }
+    }
 
 
+    $scope.recordErrorsDegree = function (error) {
+        $scope.errors = [];
+        if (error.data.errors.qualification) {
+            $scope.errors.push(error.data.errors.qualification[0]);
+        } else if (error.data.errors.specialization) {
+            $scope.errors.push(error.data.errors.specialization[0]);
+        } else if (error.data.errors.university) {
+            $scope.errors.push(error.data.errors.university[0]);
+        } else if (error.data.errors.date_of_specialization) {
+            $scope.errors.push(error.data.errors.date_of_specialization[0]);
+        } else if (error.data.errors.details) {
+            $scope.errors.push(error.data.errors.details[0]);
+        }
+    }
+    $scope.recordErrorsCourse= function (error) {
+        $scope.errors = [];
+        if (error.data.errors.Course_Name) {
+            $scope.errors.push(error.data.errors.Course_Name[0]);
+        } else if (error.data.errors.place) {
+            $scope.errors.push(error.data.errors.place[0]);
+        } else if (error.data.errors.Start_Date) {
+            $scope.errors.push(error.data.errors.Start_Date[0]);
+        } else if (error.data.errors.Expiry_date) {
+            $scope.errors.push(error.data.errors.Expiry_date[0]);
+        } else if (error.data.errors.details) {
+            $scope.errors.push(error.data.errors.details[0]);
+        }
+    }
+    $scope.recordErrorsExperience= function (error) {
+        $scope.errors = [];
+        if (error.data.errors.Workplace) {
+            $scope.errors.push(error.data.errors.Workplace[0]);
+        } else if (error.data.errors.Job_title) {
+            $scope.errors.push(error.data.errors.Job_title[0]);
+        } else if (error.data.errors.Start_Date) {
+            $scope.errors.push(error.data.errors.Start_Date[0]);
+        } else if (error.data.errors.Expiry_date) {
+            $scope.errors.push(error.data.errors.Expiry_date[0]);
+        } else if (error.data.errors.Salary) {
+        $scope.errors.push(error.data.errors.Salary[0]);
+    } else if (error.data.errors.coin) {
+        $scope.errors.push(error.data.errors.coin[0]);
+    } else if (error.data.errors.details) {
+            $scope.errors.push(error.data.errors.details[0]);
+        }
+    }
 });
 
 

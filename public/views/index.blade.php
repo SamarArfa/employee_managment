@@ -51,6 +51,8 @@
 
 <body ng-app="myApp" ng-controller="CRUDController1">
 <a href="#!display" class="btn btn-info ">display data</a>
+
+
 <div class="container">
 
     <ul class="tabs">
@@ -63,7 +65,11 @@
     </ul>
 
     <div id="tab-1" class="tab-content current">
+        <div class="alert alert-danger" ng-if="errors.length > 0"  class="close" data-dismiss="alert" aria-label="Close">
 
+            <div ng-repeat="error in errors"><i class="material-icons">close</i> {{ error }}</div>
+
+        </div>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -71,8 +77,11 @@
                         <br>
                         <div class="card" >
                             <div class="card-header card-header-primary">
+
+                                <br>
                                 <h5 class="card-title ">Add new Information
                                 </h5>
+
                             </div>
                             <div class="model card-body" >
                                 <form   enctype="multipart/form-data">
@@ -211,6 +220,11 @@
                         <div class="card" >
                             <div class="card-header card-header-primary">
                                 <h5 class="card-title ">Add new Kinship</h5>
+                                <div class="alert alert-danger" ng-if="errors.length > 0"  class="close" data-dismiss="alert" aria-label="Close">
+
+                                    <div ng-repeat="error in errors"><i class="material-icons">close</i> {{ error }}</div>
+
+                                </div>
                             </div>
                             <div class="model card-body" >
                                 <form   enctype="multipart/form-data">
@@ -344,6 +358,11 @@
                                 <div class="card-header card-header-primary">
                                     <h5 class="card-title ">Add new University degrees
                                     </h5>
+                                    <div class="alert alert-danger" ng-if="errors.length > 0"  class="close" data-dismiss="alert" aria-label="Close">
+
+                                        <div ng-repeat="error in errors"><i class="material-icons">close</i> {{ error }}</div>
+
+                                    </div>
                                 </div>
                                 <div class="model card-body" >
                                     <form   enctype="multipart/form-data">
@@ -426,6 +445,11 @@
                             <div class="card-header card-header-primary">
                                 <h5 class="card-title ">Add new course
                                 </h5>
+                                <div class="alert alert-danger" ng-if="errors.length > 0"  class="close" data-dismiss="alert" aria-label="Close">
+
+                                    <div ng-repeat="error in errors"><i class="material-icons">close</i> {{ error }}</div>
+
+                                </div>
                             </div>
                             <div class="model card-body" >
                                 <form   enctype="multipart/form-data">
@@ -496,6 +520,11 @@
                             <div class="card-header card-header-primary">
                                 <h5 class="card-title ">Add new experience
                                 </h5>
+                                <div class="alert alert-danger" ng-if="errors.length > 0"  class="close" data-dismiss="alert" aria-label="Close">
+
+                                    <div ng-repeat="error in errors"><i class="material-icons">close</i> {{ error }}</div>
+
+                                </div>
                             </div>
                             <div class="model card-body" >
                                 <form   enctype="multipart/form-data">

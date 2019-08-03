@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Storage;
-use Image;
+
 use App\info;
 use App\specialization;
 use Illuminate\Http\Request;
+use Storage;
+use Intervention\Image\Image;
 
 class employee_info extends Controller
 {
@@ -44,24 +45,24 @@ class employee_info extends Controller
      */
     public function store(Request $request)
     {
-//        $this->validate($request,[
-//            'firstName'=>'required',
-//            'secondName'=>'required',
-//            'thirdName'=>'required',
-//            'fourthName'=>'required',
-//            'email'=>'required|email',
-//            'idNum'=>'required',
-//            'functionalNum'=>'required',
-//            'specialization'=>'required',
-//            'socialStatus'=>'required',
-//            'gender'=>'required',
-//            'mobile' =>'required',
-//            'dateOfHiring'=>'required',
-//            'dateBirth'=>'required',
-//            'phone' =>['required','integer', 'min:0'],
-//            'address' => ['required', 'string'],
-//            'image'=>'image',
-//        ]);
+        $this->validate($request,[
+            'firstName'=>'required',
+            'secondName'=>'required',
+            'thirdName'=>'required',
+            'fourthName'=>'required',
+            'email'=>'required|email',
+            'idNum'=>'required',
+            'functionalNum'=>'required',
+            'specialization'=>'required',
+            'socialStatus'=>'required',
+            'gender'=>'required',
+            'mobile' =>'required',
+            'dateOfHiring'=>'required',
+            'dateBirth'=>'required',
+            'phone' =>['required','integer', 'min:0'],
+            'address' => ['required', 'string'],
+            'image'=>'image',
+        ]);
 
         $info = new info();
         $info->firstName= $request->firstName;
@@ -176,6 +177,7 @@ class employee_info extends Controller
     public function destroy($id)
     {
         $info = info::find($id);
+        Storage::delete($info->image);
         $info->delete();
 
         return response('successifull',200);

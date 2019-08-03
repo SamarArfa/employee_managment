@@ -134,6 +134,7 @@
                             <br>
 
                             <button type="submit" class="btn btn-primary" ng-click="updatekinship()">update</button>
+                            <a href="#!display" class="btn btn-danger">Back</a>
 
 
                         </form>

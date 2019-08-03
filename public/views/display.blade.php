@@ -102,7 +102,7 @@
                                             <th>date Of Birthay</th>
                                             <th>Address</th>
                                             <th>Image</th>
-                                            <th>Action</th>
+                                            <th colspan="2">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -137,6 +137,8 @@
                                                 <button ng-click="confirmDelete_info(infos.id)" type="button" class="btn btn-danger btn-sm  deleteClass">
 
                                                     delete</button>
+                                            </td>
+                                            <td>
                                                 <a href="#!editInfo/{{infos.id}}" type="button" class="btn btn-info btn-sm">
 
                                                     edit</a>
@@ -185,7 +187,7 @@
                                     <th>Study</th>
                                     <th>Work</th>
                                     <th>Image</th>
-                                    <th>Action</th>
+                                    <th colspan="2">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -225,6 +227,7 @@
                                         <button ng-click="confirmDelete(kinships.id)" type="button" class="btn btn-danger btn-sm  deleteClass">
 
                                             delete</button></td>
+                                    </td>
                                     <td>
                                         <a href="#!editkinship/{{kinships.id}}/{{kinships.employee_id}}" type="button" class="btn btn-info btn-sm">
 
@@ -271,7 +274,7 @@
                                         <th>University</th>
                                         <th>Date of specialization</th>
                                         <th>details </th>
-                                        <th>Action</th>
+                                        <th colspan="2">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -301,6 +304,8 @@
                                         <td>
                                             <button ng-click="confirmDelete_degree(uni.id)" type="button" class="btn btn-danger btn-sm  deleteClass">
 delete</button>
+                                        </td>
+                                        <td>
                                             <a href="#!editDegree/{{uni.id}}/{{uni.employee_id}}" type="button" class="btn btn-info btn-sm">
 
                                                 edit</a>
@@ -345,7 +350,7 @@ delete</button>
                                         <th>Start_Date</th>
                                         <th>Expiry_date</th>
                                         <th>details </th>
-                                        <th>Action</th>
+                                        <th colspan="2">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -364,6 +369,8 @@ delete</button>
                                             <button ng-click="confirmDelete_course(courses.id)" type="button" class="btn btn-danger btn-sm  deleteClass">
 
                                               delete</button>
+                                        </td>
+                                        <td>
                                             <a href="#!editCourse/{{courses.id}}/{{courses.employee_id}}" type="button" class="btn btn-info btn-sm">
 
                                                 edit</a>
@@ -411,7 +418,7 @@ delete</button>
                                         <th>coin </th>
 
                                         <th>details </th>
-                                        <th>Action</th>
+                                        <th colspan="2">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -433,6 +440,8 @@ delete</button>
                                             <button ng-click="confirmDelete_experience(experiences.id)" type="button" class="btn btn-danger btn-sm  deleteClass">
 
                                                 delete</button>
+                                        </td>
+                                        <td>
                                             <a href="#!editExpereance/{{experiences.id}}/{{experiences.employee_id}}" type="button" class="btn btn-info btn-sm">
 
                                                 edit</a>
