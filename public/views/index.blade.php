@@ -195,7 +195,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <label class="control-label" for="featured_image">Image</label>
-                                    <input type="file" name="featured_image"  ng-model="info.image" accept="image">
+                                    <input type="file" name="image" id="image" ng-model="info.image" >
                                 </div><br>
                             </div>
 

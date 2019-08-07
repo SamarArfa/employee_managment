@@ -156,28 +156,56 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
     // Add new User
     $scope.addinfo = function () {
+        var payload = new FormData();
+        var files = document.getElementById('image').files[0];
+        payload.append('image',files);
+        // var f = document.getElementById('image').files[0];
+
+        // var payload = new FormData();
+        payload.append('firstName', $scope.info.firstName);
+        payload.append('secondName', $scope.info.secondName);
+        payload.append('thirdName', $scope.info.thirdName);
+        payload.append('fourthName', $scope.info.fourthName);
+        payload.append('email', $scope.info.email);
+        payload.append('idNum', $scope.info.idNum);
+        payload.append('functionalNum', $scope.info.functionalNum);
+        payload.append('specialization', $scope.info.specialization);
+        payload.append('socialStatus', $scope.info.socialStatus);
+        payload.append('gender', $scope.info.gender);
+        payload.append('mobile', $scope.info.mobile);
+        payload.append('dateOfHiring', $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'));
+        payload.append('dateBirth', $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'));
+        payload.append('phone', $scope.info.phone);
+        payload.append('address', $scope.info.address);
+
+        // payload.append('image',$scope.info.image);
+console.log(payload.values());
         $http({
             method: 'POST',
             url: 'http://localhost/employee/public/employee_info',
-            data: {
-                firstName: $scope.info.firstName,
-                secondName: $scope.info.secondName,
-                thirdName: $scope.info.thirdName,
-                fourthName: $scope.info.fourthName,
-                email: $scope.info.email,
-                idNum: $scope.info.idNum,
-                functionalNum: $scope.info.functionalNum,
-                specialization: $scope.info.specialization,
-                socialStatus: $scope.info.socialStatus,
-                gender: $scope.info.gender,
-                mobile: $scope.info.mobile,
-                dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
-                dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
-                phone: $scope.info.phone,
-                address: $scope.info.address,
-                image: $scope.info.image,
-            },
-            dataType: 'json',
+            data:
+       payload
+            //     {
+            //     firstName: $scope.info.firstName,
+            //     secondName: $scope.info.secondName,
+            //     thirdName: $scope.info.thirdName,
+            //     fourthName: $scope.info.fourthName,
+            //     email: $scope.info.email,
+            //     idNum: $scope.info.idNum,
+            //     functionalNum: $scope.info.functionalNum,
+            //     specialization: $scope.info.specialization,
+            //     socialStatus: $scope.info.socialStatus,
+            //     gender: $scope.info.gender,
+            //     mobile: $scope.info.mobile,
+            //     dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
+            //     dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
+            //     phone: $scope.info.phone,
+            //     address: $scope.info.address,
+            //     image: fd,
+            // }
+            ,
+            dataType: 'json'
+
         }).then(function successCallback(response) {
             console.log(response);
             alert('Submit success');
@@ -185,13 +213,12 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
             // alert('Submit Success');
             // alert(response.data.id);
             $scope.id = response.data.id;
-            $scope.loadinfo();
         }, function error(error) {
             // console.log(response);
             $scope.recordErrors(error);
 
 
-            $scope.loadinfo();
+            // $scope.loadinfo();
 
         });
         }
