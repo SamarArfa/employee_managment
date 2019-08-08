@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63ea66a3-0f62-4a3c-ab46-e2ee1683a124" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/1565255161.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/employee_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/employee_info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/editInformation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/editInformation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/editcourse.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/editcourse.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/editdegrees.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/editdegrees.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/editexperience.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/editexperience.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/editkinship.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/editkinship.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="63ea66a3-0f62-4a3c-ab46-e2ee1683a124" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +255,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -406,12 +393,12 @@
       <workItem from="1565196580871" duration="767000" />
       <workItem from="1565197366858" duration="1185000" />
       <workItem from="1565244070933" duration="5137000" />
-      <workItem from="1565257207160" duration="7581000" />
+      <workItem from="1565257207160" duration="7882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143580000" />
+    <option name="totallyTimeSpent" value="143881000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
