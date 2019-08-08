@@ -8,7 +8,7 @@ use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Storage;
-use Intervention\Image\Image;
+use Image;
 
 class employee_info extends Controller
 {
@@ -48,8 +48,9 @@ class employee_info extends Controller
      */
     public function store(Request $request)
     {
-        dd(Input::get('firstName'));
-       // dd(json_decode($request->getContent(), true));
+
+//        dd(Input::get('firstName'));
+//        dd($request->all());
         $this->validate($request,[
             'firstName'=>'required',
             'secondName'=>'required',
@@ -68,26 +69,7 @@ class employee_info extends Controller
             'address' => ['required', 'string'],
             'image'=>'image',
         ]);
-//        $validator = $this->validator($request->all());
-//        if($validator->fails()){
-//            return Response::json( $validator->errors()
-//                ,400);
-//        }
-//        $info=new info($request->all());
-//        if($info->save())
-//        {
-//            $id=$info->id;
-//            if ($request->hasFile('featured_image')) {
-//                $file = $request->file('image');
-//                $image=new File();
-//                $image->name = $this->uploadImage($file);
-//                $image->file_id=$id;
-//                $image->save();
-//            }
-//        }
-//
-//        return Response::json(['error' => 'Server is down']
-//            ,500);
+
         $info = new info();
 
 
@@ -106,18 +88,12 @@ class employee_info extends Controller
         $info->dateBirth =$request->dateBirth;
         $info->socialStatus =$request->get('socialStatus');
         $info->gender =$request->gender;
-//        if($request->hasFile('featured_image')) {
-//            //add the new photo
-//            $image = Input::file('image');
-//            $fileName = time() . '.' . $image->getClientOriginalExtension();
-//            $location = public_path('images/' . $fileName);
-//
-//            Image::make($image)->resize(100, 200)->save($location);
-//            $info->image =$fileName;
-//        }
-        if($request->hasFile('featured_image')) {
+
+
+        if($request->hasFile('image')) {
             //add the new photo
             $image = $request->file('image');
+
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $fileName);
 
@@ -171,9 +147,10 @@ class employee_info extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->json()->all();
+//        dd($request->all());
+//        $data = $request->json()->all();
 
-        $info = info::find($data['id']);
+        $info = info::find($id);
         $info->firstName= $request->firstName;
         $info->secondName= $request->secondName;
         $info->thirdName= $request->thirdName;
@@ -189,7 +166,7 @@ class employee_info extends Controller
         $info->dateBirth =$request->dateBirth;
         $info->socialStatus =$request->get('socialStatus');
         $info->gender =$request->gender;
-        if($request->hasFile('featured_image')) {
+        if($request->hasFile('image')) {
             //add the new photo
             $image = $request->file('image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
@@ -197,7 +174,7 @@ class employee_info extends Controller
             Image::make($image)->resize(100, 200)->save($location);
             $oldFileName = $info->images;
             //updatw the database
-            $info->images = $fileName;
+            $info->image = $fileName;
             //delete the old photo
             Storage::delete($oldFileName);
         }

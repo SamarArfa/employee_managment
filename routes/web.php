@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('employee/{id}','employee@update');
+Route::post('employee_info/{id}','employee_info@update');
+
 Route::resource('employee','employee');
 Route::resource('employee_info','employee_info');
 Route::resource('employee_degree','employee_degree');

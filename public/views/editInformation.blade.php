@@ -22,7 +22,7 @@
                 <br>
                 <div class="card" >
                     <div class="card-header card-header-primary">
-                        <h5 class="card-title ">Add new Information
+                        <h5 class="card-title ">edit Information
                         </h5>
                     </div>
                     <div class="model card-body" >
@@ -140,7 +140,7 @@
                                     <br>
                                     <img ng-src="images/{{info.image}}">
                                     <br>
-                                    <input type="file" name="featured_image"  ng-model="info.image" accept="image">
+                                    <input type="file" name="featured_image" id="image2" ng-model="info.image">
                                 </div><br>
                             </div>
 

@@ -18,7 +18,7 @@
                 <br>
                 <div class="card" >
                     <div class="card-header card-header-primary">
-                        <h5 class="card-title ">Add new Kinship</h5>
+                        <h5 class="card-title ">edit Kinship</h5>
                     </div>
                     <div class="model card-body" >
                         <form   enctype="multipart/form-data">
@@ -126,7 +126,7 @@
                                 <label class="control-label">Image</label>
                                 <img ng-src="images/{{kinship.image}}">
 <br>
-                                <input type="file" name="image" accept="image" ng-model="kinship.image">
+                                <input type="file" name="image" id="image3" ng-model="kinship.image">
 
 
                                 <br>

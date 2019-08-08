@@ -22,7 +22,7 @@
                     <br>
                     <div class="card" >
                         <div class="card-header card-header-primary">
-                            <h5 class="card-title ">Add new course
+                            <h5 class="card-title ">c course
                             </h5>
                         </div>
                         <div class="model card-body" >

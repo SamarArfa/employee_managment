@@ -44,7 +44,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
     $scope.id=0;
     $scope.loadkinship = function () {
 
-        $http.get('http://localhost/employee/public/employee')
+        $http.get('http://localhost/employee_managment/public/employee')
 
             .then(function success(e) {
                 console.log(e);
@@ -59,24 +59,40 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
     //******************// Add new kinship
     $scope.addkinship = function () {
-        // alert($scope.id);
-        $http({
+        var payload = new FormData();
+        var files = document.getElementById('image').files[0];
+        payload.append('image',files);
+        // var f = document.getElementById('image').files[0];
+
+        // var payload = new FormData();
+
+        payload.append('employee_id', $scope.id);
+        payload.append('FirstName', $scope.kinship.FirstName);
+        payload.append('SecondName', $scope.kinship.SecondName);
+        payload.append('ThirdName', $scope.kinship.ThirdName);
+        payload.append('FourthName', $scope.kinship.FourthName);
+        payload.append('relative_relation', $scope.kinship.relative_relation);
+        payload.append('Date_of_Birth',$filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'));
+        payload.append('Social_status', $scope.kinship.Social_status);
+        payload.append('Study', $scope.kinship.Study);
+        payload.append('work', $scope.kinship.work);
+
+
+        // payload.append('image',$scope.info.image);
+
+                $http({
             method: 'POST',
-            url: 'http://localhost/employee/public/employee',
-            data: {
-                employee_id :$scope.id,
-                FirstName: $scope.kinship.FirstName,
-                SecondName: $scope.kinship.SecondName,
-                ThirdName: $scope.kinship.ThirdName,
-                FourthName: $scope.kinship.FourthName,
-                relative_relation: $scope.kinship.relative_relation,
-                Date_of_Birth: $filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'),
-                Social_status: $scope.kinship.Social_status,
-                Study: $scope.kinship.Study,
-                work: $scope.kinship.work,
-                image: $scope.kinship.image
-            },
-            dataType: 'json',
+            url: 'http://localhost/employee_managment/public/employee',
+
+        data:
+            payload
+
+                ,
+
+                transformRequest: angular.identity,
+            headers: {'Content-Type': undefined},
+
+        dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
             alert('Submit Success');
@@ -97,7 +113,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
     $scope.confirmDelete = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
-            var url='http://localhost/employee/public/employee/' + id;
+            var url='http://localhost/employee_managment/public/employee/' + id;
             $http.delete(url).then(function (data) {
 
                 console.log(data);
@@ -119,7 +135,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
     $scope.info = []; $scope.specialization=[];
     $scope.loadinfo = function () {
-        $http.get('http://localhost/employee/public/employee_info')
+        $http.get('http://localhost/employee_managment/public/employee_info')
             .then(function success(e) {
                 $scope.info = e.data.info;
                 $scope.specialization = e.data.specialization;
@@ -131,7 +147,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
     $scope.confirmDelete_info = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
-            var url='http://localhost/employee/public/employee_info/' + id;
+            var url='http://localhost/employee_managment/public/employee_info/' + id;
             $http.delete(url).then(function (data) {
 
                 console.log(data);
@@ -179,31 +195,17 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         payload.append('address', $scope.info.address);
 
         // payload.append('image',$scope.info.image);
-console.log(payload.values());
+// console.log(payload.values());
         $http({
             method: 'POST',
-            url: 'http://localhost/employee/public/employee_info',
+            url: 'http://localhost/employee_managment/public/employee_info',
             data:
        payload
-            //     {
-            //     firstName: $scope.info.firstName,
-            //     secondName: $scope.info.secondName,
-            //     thirdName: $scope.info.thirdName,
-            //     fourthName: $scope.info.fourthName,
-            //     email: $scope.info.email,
-            //     idNum: $scope.info.idNum,
-            //     functionalNum: $scope.info.functionalNum,
-            //     specialization: $scope.info.specialization,
-            //     socialStatus: $scope.info.socialStatus,
-            //     gender: $scope.info.gender,
-            //     mobile: $scope.info.mobile,
-            //     dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
-            //     dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
-            //     phone: $scope.info.phone,
-            //     address: $scope.info.address,
-            //     image: fd,
-            // }
+
             ,
+
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined},
             dataType: 'json'
 
         }).then(function successCallback(response) {
@@ -228,7 +230,7 @@ $scope.qualification = [];
     $scope.specialization = [];$scope.university = [];
     $scope.loaddegree = function () {
 
-        $http.get('http://localhost/employee/public/employee_degree')
+        $http.get('http://localhost/employee_managment/public/employee_degree')
 
             .then(function success(e) {
                 console.log(e);
@@ -248,7 +250,7 @@ $scope.qualification = [];
     $scope.confirmDelete_degree = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
-            var url = 'http://localhost/employee/public/employee_degree/' + id;
+            var url = 'http://localhost/employee_managment/public/employee_degree/' + id;
             $http.delete(url).then(function (data) {
 
                 console.log(data);
@@ -267,7 +269,7 @@ $scope.qualification = [];
     $scope.adddegree = function () {
         $http({
             method: 'POST',
-            url: 'http://localhost/employee/public/employee_degree',
+            url: 'http://localhost/employee_managment/public/employee_degree',
             data: {
                 employee_id :$scope.id,
 
@@ -296,7 +298,7 @@ $scope.qualification = [];
 
     $scope.loadcourse = function () {
 
-        $http.get('http://localhost/employee/public/employee_course')
+        $http.get('http://localhost/employee_managment/public/employee_course')
 
             .then(function success(e) {
 
@@ -313,7 +315,7 @@ $scope.qualification = [];
     $scope.confirmDelete_course = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
-            var url = 'http://localhost/employee/public/employee_course/' + id;
+            var url = 'http://localhost/employee_managment/public/employee_course/' + id;
             $http.delete(url).then(function (data) {
 
                 console.log(data);
@@ -334,7 +336,7 @@ $scope.qualification = [];
     $scope.addcourse = function () {
         $http({
             method: 'POST',
-            url: 'http://localhost/employee/public/employee_course',
+            url: 'http://localhost/employee_managment/public/employee_course',
             data: {
                 employee_id :$scope.id,
 
@@ -363,7 +365,7 @@ $scope.qualification = [];
     $scope.experience = []; $scope.coin = [];
     $scope.loadexperience = function () {
 
-        $http.get('http://localhost/employee/public/employee_experience')
+        $http.get('http://localhost/employee_managment/public/employee_experience')
 
             .then(function success(e) {
                 console.log(e);
@@ -380,7 +382,7 @@ $scope.qualification = [];
     $scope.confirmDelete_experience = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
-            var url = 'http://localhost/employee/public/employee_experience/' + id;
+            var url = 'http://localhost/employee_managment/public/employee_experience/' + id;
             $http.delete(url).then(function (data) {
 
                 console.log(data);
@@ -399,7 +401,7 @@ $scope.qualification = [];
     $scope.addexperience = function () {
         $http({
             method: 'POST',
-            url: 'http://localhost/employee/public/employee_experience',
+            url: 'http://localhost/employee_managment/public/employee_experience',
             data: {
                 employee_id :$scope.id,
 
@@ -552,7 +554,7 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'get',
-            url: 'http://localhost/employee/public/employee/' + $routeParams.id + '/edit'
+            url: 'http://localhost/employee_managment/public/employee/' + $routeParams.id + '/edit'
         })
             .then(function success(e) {
                 console.log(e);
@@ -568,26 +570,44 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
 //  /***************** update
     $scope.updatekinship = function () {
 
-        // alert('sdvfedrh');
+        var payload = new FormData();
+        var files = document.getElementById('image3').files[0];
+        payload.append('image',files);
+        // var f = document.getElementById('image').files[0];
 
+        // var payload = new FormData();
+        payload.append('id', $routeParams.id);
+        payload.append('employee_id', $routeParams.employee_id);
+        payload.append('FirstName', $scope.kinship.FirstName);
+        payload.append('SecondName', $scope.kinship.SecondName);
+        payload.append('ThirdName', $scope.kinship.ThirdName);
+        payload.append('FourthName', $scope.kinship.FourthName);
+        payload.append('relative_relation', $scope.kinship.relative_relation);
+        payload.append('Date_of_Birth',$filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'));
+        payload.append('Social_status', $scope.kinship.Social_status);
+        payload.append('Study', $scope.kinship.Study);
+        payload.append('work', $scope.kinship.work);
         $http({
-            method: 'PUT',
-            url: 'http://localhost/employee/public/employee/' + $routeParams.id,
-            data: {
-                id: $routeParams.id,
-                employee_id :$routeParams.employee_id,
-                FirstName: $scope.kinship.FirstName,
-                SecondName: $scope.kinship.SecondName,
-                ThirdName: $scope.kinship.ThirdName,
-                FourthName: $scope.kinship.FourthName,
-                relative_relation: $scope.kinship.relative_relation,
-                Date_of_Birth: $filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'),
-                Social_status: $scope.kinship.Social_status,
-                Study: $scope.kinship.Study,
-                work: $scope.kinship.work,
-                image: $scope.kinship.image
-
-            },
+            method: 'POST',
+            url: 'http://localhost/employee_managment/public/employee/' + $routeParams.id,
+            data:payload ,
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined},
+            //     {
+            //     id: $routeParams.id,
+            //     employee_id :$routeParams.employee_id,
+            //     FirstName: $scope.kinship.FirstName,
+            //     SecondName: $scope.kinship.SecondName,
+            //     ThirdName: $scope.kinship.ThirdName,
+            //     FourthName: $scope.kinship.FourthName,
+            //     relative_relation: $scope.kinship.relative_relation,
+            //     Date_of_Birth: $filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'),
+            //     Social_status: $scope.kinship.Social_status,
+            //     Study: $scope.kinship.Study,
+            //     work: $scope.kinship.work,
+            //     image: $scope.kinship.image
+            //
+            // },
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
@@ -614,7 +634,7 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'get',
-            url: 'http://localhost/employee/public/employee_info/' + $routeParams.id + '/edit'
+            url: 'http://localhost/employee_managment/public/employee_info/' + $routeParams.id + '/edit'
         })
             .then(function success(e) {
                 console.log(e);
@@ -629,31 +649,53 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
 //  /***************** update
     $scope.updateInfo = function () {
 
-        // alert('sdvfedrh');
+        var payload = new FormData();
+        var files = document.getElementById('image2').files[0];
+        payload.append('image',files);
+        // var f = document.getElementById('image').files[0];
 
+        payload.append('id', $routeParams.id);
+        payload.append('firstName', $scope.info.firstName);
+        payload.append('secondName', $scope.info.secondName);
+        payload.append('thirdName', $scope.info.thirdName);
+        payload.append('fourthName', $scope.info.fourthName);
+        payload.append('email', $scope.info.email);
+        payload.append('idNum', $scope.info.idNum);
+        payload.append('functionalNum', $scope.info.functionalNum);
+        payload.append('specialization', $scope.info.specialization);
+        payload.append('socialStatus', $scope.info.socialStatus);
+        payload.append('gender', $scope.info.gender);
+        payload.append('mobile', $scope.info.mobile);
+        payload.append('dateOfHiring', $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'));
+        payload.append('dateBirth', $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'));
+        payload.append('phone', $scope.info.phone);
+        payload.append('address', $scope.info.address);
         $http({
-            method: 'PUT',
-            url: 'http://localhost/employee/public/employee_info/' + $routeParams.id,
-            data: {
-                id: $routeParams.id,
-                firstName: $scope.info.firstName,
-                secondName: $scope.info.secondName,
-                thirdName: $scope.info.thirdName,
-                fourthName: $scope.info.fourthName,
-                email: $scope.info.email,
-                idNum: $scope.info.idNum,
-                functionalNum: $scope.info.functionalNum,
-                specialization: $scope.info.specialization,
-                socialStatus: $scope.info.socialStatus,
-                gender: $scope.info.gender,
-                mobile: $scope.info.mobile,
-                dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
-                dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
-                phone: $scope.info.phone,
-                address: $scope.info.address,
-                image: $scope.info.image,
-
-            },
+            method: 'POST',
+            url: 'http://localhost/employee_managment/public/employee_info/' + $routeParams.id,
+            data: payload ,
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined},
+            //     {
+            //     id: $routeParams.id,
+            //     firstName: $scope.info.firstName,
+            //     secondName: $scope.info.secondName,
+            //     thirdName: $scope.info.thirdName,
+            //     fourthName: $scope.info.fourthName,
+            //     email: $scope.info.email,
+            //     idNum: $scope.info.idNum,
+            //     functionalNum: $scope.info.functionalNum,
+            //     specialization: $scope.info.specialization,
+            //     socialStatus: $scope.info.socialStatus,
+            //     gender: $scope.info.gender,
+            //     mobile: $scope.info.mobile,
+            //     dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
+            //     dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
+            //     phone: $scope.info.phone,
+            //     address: $scope.info.address,
+            //     image: $scope.info.image,
+            //
+            // },
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
@@ -680,7 +722,7 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'get',
-            url: 'http://localhost/employee/public/employee_degree/' + $routeParams.id + '/edit'
+            url: 'http://localhost/employee_managment/public/employee_degree/' + $routeParams.id + '/edit'
         })
             .then(function success(e) {
                 console.log(e);
@@ -701,7 +743,7 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'PUT',
-            url: 'http://localhost/employee/public/employee_degree/' + $routeParams.id ,
+            url: 'http://localhost/employee_managment/public/employee_degree/' + $routeParams.id ,
             data: {
                 employee_id :$routeParams.employee_id,
                 qualification: $scope.degree.qualification,
@@ -735,7 +777,7 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'get',
-            url: 'http://localhost/employee/public/employee_course/' + $routeParams.id+'/edit'
+            url: 'http://localhost/employee_managment/public/employee_course/' + $routeParams.id+'/edit'
         })
             .then(function success(e) {
                 console.log(e);
@@ -753,7 +795,7 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'PUT',
-            url:'http://localhost/employee/public/employee_course/'+$routeParams.id,
+            url:'http://localhost/employee_managment/public/employee_course/'+$routeParams.id,
             data: {
                 id: $routeParams.id,
                 employee_id :$routeParams.employee_id,
@@ -791,7 +833,7 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'get',
-            url: 'http://localhost/employee/public/employee_experience/' + $routeParams.id+'/edit'
+            url: 'http://localhost/employee_managment/public/employee_experience/' + $routeParams.id+'/edit'
         })
             .then(function success(e) {
                 console.log(e);
@@ -810,7 +852,7 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
 
         $http({
             method: 'PUT',
-            url:'http://localhost/employee/public/employee_experience/'+$routeParams.id,
+            url:'http://localhost/employee_managment/public/employee_experience/'+$routeParams.id,
             data: {
                 id: $routeParams.id,
 

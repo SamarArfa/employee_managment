@@ -329,7 +329,7 @@
                                     <div class="col-md-12">
                                         <br >
                                         <label class="control-label">Image</label>
-                                        <input type="file" name="image" accept="image" ng-model="kinship.image">
+                                        <input type="file" name="image" id="image1" accept="image" ng-model="kinship.image">
 
 
                                         <br>

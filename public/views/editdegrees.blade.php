@@ -22,7 +22,7 @@
                 <br>
                 <div class="card" >
                     <div class="card-header card-header-primary">
-                        <h5 class="card-title ">Add new University degrees
+                        <h5 class="card-title ">edit University degrees
                         </h5>
                     </div>
                     <div class="model card-body" >

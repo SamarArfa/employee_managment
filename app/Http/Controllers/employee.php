@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Kinship;
 use App\relation;
-
+use Storage;
+use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -70,9 +71,9 @@ $kinship=Kinship::all();
         $kinship->work =$request->work;
 
 
-        if($request->hasFile('featured_image')) {
+        if($request->hasFile('image')) {
             //add the new photo
-            $image = $request->file('featured_image');
+            $image = $request->file('image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $fileName);
 
@@ -128,7 +129,7 @@ $kinship=Kinship::all();
     public function update(Request $request, $id)
     {
 //        $data = $request->json()->all();
-
+//dd($request->all());
         $kinship = Kinship::find($id);
         $kinship->FirstName =$request->FirstName;
         $kinship->SecondName =$request->SecondName;
@@ -142,14 +143,17 @@ $kinship=Kinship::all();
         $kinship->work =$request->work;
 
 
-        if($request->hasFile('featured_image')) {
+        if($request->hasFile('image')) {
             //add the new photo
-            $image = $request->file('featured_image');
+            $image = $request->file('image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $fileName);
-
             Image::make($image)->resize(100, 200)->save($location);
-            $kinship->image =$fileName;
+            $oldFileName = $kinship->images;
+            //updatw the database
+            $kinship->image = $fileName;
+            //delete the old photo
+            Storage::delete($oldFileName);
         }
 
 
