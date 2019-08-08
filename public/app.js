@@ -39,7 +39,7 @@ myApp.config(function($routeProvider) {
 });
 
 myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
-
+    //***************************load kinship
     $scope.kinship = []; $scope.relative = [];
     $scope.id=0;
     $scope.loadkinship = function () {
@@ -62,10 +62,6 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         var payload = new FormData();
         var files = document.getElementById('image').files[0];
         payload.append('image',files);
-        // var f = document.getElementById('image').files[0];
-
-        // var payload = new FormData();
-
         payload.append('employee_id', $scope.id);
         payload.append('FirstName', $scope.kinship.FirstName);
         payload.append('SecondName', $scope.kinship.SecondName);
@@ -76,23 +72,13 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         payload.append('Social_status', $scope.kinship.Social_status);
         payload.append('Study', $scope.kinship.Study);
         payload.append('work', $scope.kinship.work);
-
-
-        // payload.append('image',$scope.info.image);
-
-                $http({
+        $http({
             method: 'POST',
             url: 'http://localhost/employee_managment/public/employee',
-
-        data:
-            payload
-
-                ,
-
-                transformRequest: angular.identity,
+            data: payload ,
+            transformRequest: angular.identity,
             headers: {'Content-Type': undefined},
-
-        dataType: 'json',
+            dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
             alert('Submit Success');
@@ -100,16 +86,13 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         }, function errorCallback(response) {
             console.log(response);
             $scope.recordErrorsKinship(response);
-
-
-            // alert('Submit Error');
             $scope.loadkinship();
 
         });
     }
 
 
-//  /***************** delete
+//  /***************** delete kinship
     $scope.confirmDelete = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
@@ -131,7 +114,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
 
 
     //********************************************************
-
+    //*************************load information
 
     $scope.info = []; $scope.specialization=[];
     $scope.loadinfo = function () {
@@ -143,7 +126,7 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
             });
     };
     $scope.loadinfo();
-
+    //***********************Delete information
     $scope.confirmDelete_info = function(id) {
         var isConfirmDelete = confirm('Are you sure you want to delete this record?');
         if (isConfirmDelete) {
@@ -165,19 +148,13 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         }
     };
 
-    /////////////////
-    //2. show the create form
-    // $scope.errors = [];
 
 
-    // Add new User
+    //******************* Add new User
     $scope.addinfo = function () {
         var payload = new FormData();
         var files = document.getElementById('image').files[0];
         payload.append('image',files);
-        // var f = document.getElementById('image').files[0];
-
-        // var payload = new FormData();
         payload.append('firstName', $scope.info.firstName);
         payload.append('secondName', $scope.info.secondName);
         payload.append('thirdName', $scope.info.thirdName);
@@ -194,16 +171,10 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         payload.append('phone', $scope.info.phone);
         payload.append('address', $scope.info.address);
 
-        // payload.append('image',$scope.info.image);
-// console.log(payload.values());
         $http({
             method: 'POST',
             url: 'http://localhost/employee_managment/public/employee_info',
-            data:
-       payload
-
-            ,
-
+            data: payload,
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined},
             dataType: 'json'
@@ -211,20 +182,19 @@ myApp.controller("CRUDController1", function ($scope ,$http,$filter ){
         }).then(function successCallback(response) {
             console.log(response);
             alert('Submit success');
+            $scope.loadinfo();
 
-            // alert('Submit Success');
-            // alert(response.data.id);
             $scope.id = response.data.id;
         }, function error(error) {
-            // console.log(response);
             $scope.recordErrors(error);
 
 
-            // $scope.loadinfo();
+            $scope.loadinfo();
 
         });
         }
     //    **************************************************
+    //**********load degree
         $scope.degree=[];
 $scope.qualification = [];
     $scope.specialization = [];$scope.university = [];
@@ -287,13 +257,13 @@ $scope.qualification = [];
         }, function errorCallback(response) {
             console.log(response);
             $scope.recordErrorsDegree(response);
-
-            // alert('Submit Error');
             $scope.loaddegree();
 
         });
     }
 //************************************************************************
+
+    //*************load course
     $scope.course=[];
 
     $scope.loadcourse = function () {
@@ -355,13 +325,12 @@ $scope.qualification = [];
         }, function errorCallback(response) {
             console.log(response);
             $scope.recordErrorsCourse(response);
-
-            // alert('Submit Error');
             $scope.loadcourse();
 
         });
     }
-//*********************************************************************88
+//*********************************************************************
+//    *****************load experience
     $scope.experience = []; $scope.coin = [];
     $scope.loadexperience = function () {
 
@@ -422,9 +391,6 @@ $scope.qualification = [];
         }, function errorCallback(response) {
             console.log(response);
             $scope.recordErrorsExperience(response);
-
-
-            // alert('Submit Error');
             $scope.loadexperience();
 
         });
@@ -548,7 +514,7 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
     $scope.relative = [];
     $scope.Date_of_Birth=new Date();
 
-//  /***************** edit
+//  /***************** edit  kinship
 
     $scope.editkinship = function () {
 
@@ -567,15 +533,12 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
             });
     };
     $scope.editkinship();
-//  /***************** update
+//  /***************** update  kinship
     $scope.updatekinship = function () {
 
         var payload = new FormData();
         var files = document.getElementById('image3').files[0];
         payload.append('image',files);
-        // var f = document.getElementById('image').files[0];
-
-        // var payload = new FormData();
         payload.append('id', $routeParams.id);
         payload.append('employee_id', $routeParams.employee_id);
         payload.append('FirstName', $scope.kinship.FirstName);
@@ -593,29 +556,10 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
             data:payload ,
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined},
-            //     {
-            //     id: $routeParams.id,
-            //     employee_id :$routeParams.employee_id,
-            //     FirstName: $scope.kinship.FirstName,
-            //     SecondName: $scope.kinship.SecondName,
-            //     ThirdName: $scope.kinship.ThirdName,
-            //     FourthName: $scope.kinship.FourthName,
-            //     relative_relation: $scope.kinship.relative_relation,
-            //     Date_of_Birth: $filter('date')(new Date($scope.kinship.Date_of_Birth), 'yyyy-MM-dd'),
-            //     Social_status: $scope.kinship.Social_status,
-            //     Study: $scope.kinship.Study,
-            //     work: $scope.kinship.work,
-            //     image: $scope.kinship.image
-            //
-            // },
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-
-            // $scope.displayData();
-            // $scope.loadkinship();
-
 
         }, function errorCallback(response) {
             console.log(response);
@@ -625,7 +569,7 @@ myApp.controller("CRUDController2", function ($scope ,$http,$filter ,$routeParam
 });
 myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParams, $window) {
 
-//  /***************** edit
+//  /***************** edit  information
     $scope.info = [];
     $scope.specialization = [];
     $scope.dateOfHiring=new Date();
@@ -646,14 +590,12 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
             });
     };
     $scope.editInfo();
-//  /***************** update
+//  /***************** update information
     $scope.updateInfo = function () {
 
         var payload = new FormData();
         var files = document.getElementById('image2').files[0];
         payload.append('image',files);
-        // var f = document.getElementById('image').files[0];
-
         payload.append('id', $routeParams.id);
         payload.append('firstName', $scope.info.firstName);
         payload.append('secondName', $scope.info.secondName);
@@ -676,32 +618,11 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
             data: payload ,
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined},
-            //     {
-            //     id: $routeParams.id,
-            //     firstName: $scope.info.firstName,
-            //     secondName: $scope.info.secondName,
-            //     thirdName: $scope.info.thirdName,
-            //     fourthName: $scope.info.fourthName,
-            //     email: $scope.info.email,
-            //     idNum: $scope.info.idNum,
-            //     functionalNum: $scope.info.functionalNum,
-            //     specialization: $scope.info.specialization,
-            //     socialStatus: $scope.info.socialStatus,
-            //     gender: $scope.info.gender,
-            //     mobile: $scope.info.mobile,
-            //     dateOfHiring: $filter('date')(new Date($scope.info.dateOfHiring), 'yyyy-MM-dd'),
-            //     dateBirth: $filter('date')(new Date($scope.info.dateBirth), 'yyyy-MM-dd'),
-            //     phone: $scope.info.phone,
-            //     address: $scope.info.address,
-            //     image: $scope.info.image,
-            //
-            // },
+
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-            // $scope.displayData();
-            // $scope.loadkinship();
 
 
         }, function errorCallback(response) {
@@ -712,7 +633,7 @@ myApp.controller("CRUDController3", function ($scope ,$http,$filter ,$routeParam
 });
 myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParams) {
 
-//  /***************** edit
+//  /***************** edit university degree
     $scope.qualification = [];
     $scope.specialization = [];
     $scope.university = [];
@@ -736,10 +657,9 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
             });
     };
     $scope.editDegrres();
-//  /***************** update
+//  /***************** update  university degree
     $scope.updateDegrees = function () {
 
-        // alert('sdvfedrh');
 
         $http({
             method: 'PUT',
@@ -757,10 +677,6 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
             console.log(response);
             alert(' edit successfully');
 
-            // $scope.displayData();
-            // $scope.loadkinship();
-
-
         }, function errorCallback(response) {
             console.log(response);
             alert('Submit Error');
@@ -769,7 +685,7 @@ myApp.controller("CRUDController4", function ($scope ,$http,$filter ,$routeParam
 });
 myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParams) {
 
-//  /***************** edit
+//  /***************** edit  course
     $scope.course=[];
     $scope.Start_Date=new Date();
     $scope.Expiry_date=new Date();
@@ -788,10 +704,8 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
             });
     };
     $scope.editCourse();
-//  /***************** update
+//  /***************** update  course
     $scope.updateCourse =function () {
-
-        // alert('sdvfedrh');
 
         $http({
             method: 'PUT',
@@ -812,9 +726,6 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
             console.log(response);
             alert(' edit successfully');
 
-            // $scope.displayData();
-            // $scope.loadkinship();
-
 
         }, function errorCallback(response) {
             console.log(response);
@@ -825,7 +736,7 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
     myApp.controller("CRUDController6", function ($scope ,$http,$filter ,$routeParams) {
 
 
-//  /***************** edit
+//  /***************** edit  experience
     $scope.coin=[]; $scope.experience=[];
         $scope.Start_Date=new Date();
         $scope.Expiry_date=new Date();
@@ -845,10 +756,9 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
             });
     };
     $scope.editExperience();
-//  /***************** update
+//  /***************** update  experience
     $scope.updateExperience =function () {
 
-        // alert('sdvfedrh');
 
         $http({
             method: 'PUT',
@@ -870,10 +780,6 @@ myApp.controller("CRUDController5", function ($scope ,$http,$filter ,$routeParam
         }).then(function successCallback(response) {
             console.log(response);
             alert(' edit successfully');
-
-            // $scope.displayData();
-            // $scope.loadkinship();
-
 
         }, function errorCallback(response) {
             console.log(response);
